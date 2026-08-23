@@ -1,0 +1,11 @@
+CREATE DATABASE etim;
+USE etim;
+CREATE TABLE usuario(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL
+);
+
+-- DROP TABLE usuario;
+-- DELETE FROM usuario WHERE id = 1;

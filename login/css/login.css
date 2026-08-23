@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(248, 248, 248);
+    font-family: "poppins", sans-serif;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 1.5rem;
+}
+
+main a {
+    text-decoration: none;
+}
+
+main .banner {
+    height: 36rem;
+    width: 25rem;
+}
+
+main .container-login {
+    border: 1px solid rgb(211, 211, 211);
+    background-color: white;
+    height: 24.5rem;
+    width: 22rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+main .logo-instagram {
+    height: 3rem;
+    width: 10rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+main input {
+    border: 1px solid rgb(211, 211, 211);
+    background-color: rgb(248, 248, 248);
+    padding: 4px 8px;
+    width: 17rem;
+    height: 2.3rem;
+    margin: 0.2rem;
+}
+
+main input::placeholder {
+    font-family: "poppins", sans-serif;
+}
+
+main input:focus {
+    outline: none;
+}
+
+main button {
+    border: 1px solid transparent;
+    background-color: rgb(23, 111, 170);
+    color: white;
+    width: 17rem;
+    height: 2rem;
+    border-radius: 0.2rem;
+    margin-top: 0.7rem;
+    cursor: pointer;
+}
+
+main button::placeholder {
+    font-family: "poppins", sans-serif;
+}
+
+main .login-facebook {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2.5rem;
+    gap: 0.4rem;
+}
+
+main .logo-facebook {
+    height: 1rem;
+    width: 1rem;
+}
+
+main .link-facebook {
+    color:#3b5998;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+main .forgot-password {
+    font-size: 12px;
+    text-decoration: none;
+    margin-top: 1.5rem;
+}
+
+main .text-forgot-password {
+    color: black;
+}
+
+main .container-login2 {
+    border: 1px solid rgb(211, 211, 211);
+    background-color: white;
+    height: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+}
+
+main .container-login-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 1rem;
+    gap: 1rem;
+    font-size: 14px;
+}
+
+main .banner-app {
+    height: 2.5rem;
+    width: 9rem;
+    cursor: pointer;
+}
+
+main .register {
+    color: rgb(28, 122, 185);
+    font-weight: bold;
+}
