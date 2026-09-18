@@ -1,1 +1,1 @@
-.
+Repositório com dois projetos desenvolvidos em PHP e SQL para a disciplina de Programação Web II.
