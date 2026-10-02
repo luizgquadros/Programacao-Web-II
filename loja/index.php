@@ -3,7 +3,7 @@
 
 <head>
     <title>Formulario de Cadastro</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>

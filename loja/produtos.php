@@ -10,7 +10,7 @@ $produtos = $p->listarProdutos();
 <html>
 <head>
     <title>Produtos Cadastrados</title>
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
     <section class="secao-produtos">

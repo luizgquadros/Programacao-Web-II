@@ -1,16 +1,20 @@
-CREATE DATABASE loja_etim;
-use loja_etim
+CREATE DATABASE loja;
+use loja
 
-CREATE TABLE produto(
+CREATE TABLE produtos(
     id_produto INT AUTO_INCREMENT PRIMARY KEY,
     nome_produto VARCHAR(100),
     descricao TEXT,
     valor DOUBLE
 );
 
-CREATE TABLE imagem(
+CREATE TABLE imagens(
     id_imagem INT AUTO_INCREMENT PRIMARY KEY,
     nome_imagem VARCHAR(100),
     fk_id_produto INT,
-    FOREIGN KEY(fk_id_produto)REFERENCES produto(id_produto)
+    FOREIGN KEY(fk_id_produto)REFERENCES produtos(id_produto)
 );
+
+/* DELETE FROM imagens WHERE fk_id_produto = 1;
+
+DELETE FROM produtos WHERE id_produto = 1;

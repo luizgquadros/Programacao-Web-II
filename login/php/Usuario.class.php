@@ -8,9 +8,9 @@ class Usuario{
     private $pdo;
 
     function conectar(){
-        $dns      = "mysql:dbname=etim;host=localhost"; 
+        $dns      = "mysql:dbname=login;host=localhost"; 
         $userName = "root";
-        $userPass = "";
+        $userPass = "887766";
 
         try {
             $this->pdo = new PDO($dns, $userName, $userPass);

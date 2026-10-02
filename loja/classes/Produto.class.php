@@ -7,9 +7,9 @@ class Produto{
     private $pdo;
 
     public function conecta(){
-        $dns  = "mysql:dbname=loja_etim;host=localhost";
+        $dns  = "mysql:dbname=loja;host=localhost";
         $user = "root";
-        $pass = "";
+        $pass = "887766";
         try {
             $this->pdo = new PDO($dns, $user, $pass);
             return true;
