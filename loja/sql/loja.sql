@@ -15,6 +15,6 @@ CREATE TABLE imagens(
     FOREIGN KEY(fk_id_produto)REFERENCES produtos(id_produto)
 );
 
-/* DELETE FROM imagens WHERE fk_id_produto = 1;
+DELETE FROM imagens WHERE fk_id_produto = 6;
 
-DELETE FROM produtos WHERE id_produto = 1;
+DELETE FROM produtos WHERE id_produto = 10;
