@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #111111;
+    padding: 30px 20px;
+}
+
+section {
+    width: 100%;
+    max-width: 650px;
+    background-color: #1c1c1c;
+    border: 1px solid #2d2d2d;
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+form {
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #d6d6d6;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+input,
+textarea {
+    display: block;
+    width: 100%;
+    border: 1px solid #383838;
+    border-radius: 7px;
+    padding: 12px 14px;
+    background-color: #252525;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    outline: none;
+    margin-bottom: 20px;
+    transition: border-color 0.2s ease,
+        background-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+input[type="text"] {
+    height: 44px;
+}
+
+textarea {
+    height: 110px;
+    resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+    border-color: #666666;
+    background-color: #292929;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+}
+
+.meuInput {
+    height: auto;
+    padding: 10px;
+    background-color: #252525;
+    cursor: pointer;
+}
+
+.meuInput::file-selector-button {
+    border: none;
+    background-color: #363636;
+    color: #ffffff;
+    padding: 9px 13px;
+    margin-right: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.2s ease;
+}
+
+.meuInput::file-selector-button:hover {
+    background-color: #454545;
+}
+
+#botao {
+    display: block;
+    width: 100%;
+    height: 48px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 7px;
+    background-color: #ffffff;
+    color: #111111;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+#botao:hover {
+    background-color: #dddddd;
+    transform: translateY(-1px);
+}
+
+#botao:active {
+    transform: translateY(0);
+}
+
+a {
+    display: flex;
+    width: 100%;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    border: 1px solid #383838;
+    border-radius: 7px;
+    background-color: #252525;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+a:hover {
+    background-color: #303030;
+    border-color: #505050;
+}
+
+.sombra {
+    border-radius: 7px;
+}
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 20px 15px;
+    }
+
+    section {
+        max-width: 100%;
+        padding: 28px 22px;
+        border-radius: 10px;
+    }
+
+    h1 {
+        font-size: 21px;
+        margin-bottom: 25px;
+    }
+
+}
