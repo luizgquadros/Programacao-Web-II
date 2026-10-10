@@ -1,105 +1,119 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="pt-br">
 <head>
-    <title>Formulario de Cadastro</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Formulario de Cadastro de Produtos</title>
 </head>
 
 <body>
+
     <section>
 
-        <div class="form-pai">
-            <form method="post" enctype="multipart/form-data">
-            <h1>ENVIO DE IMAGENS</h1>
+        <form action="" method="post" enctype="multipart/form-data">
+
+            <h1>Envio de Imagens</h1>
+
             <label for="nome">Nome do Produto</label>
-            <input type="text" name="nome" id="nome" class="sombra">
+            <input type="text" name="nome" class="sombra">
 
             <label for="desc">Descrição</label>
-            <textarea name="desc" id="desc" class="sombra"></textarea>
+            <textarea name="desc" class="sombra"></textarea>
 
-            <label for="val">Valor</label>
-            <input type="number" name="valor" id="val" class="sombra" step="0.01" min="0">
+            <label for="valor">Valor</label>
+            <input type="text" name="valor" class="sombra">
 
-            <input type="file" name="foto[]" multiple id="foto" class="sombra meuInput">
+            <input type="file" name="foto[]" multiple class="sombra meuInput">
 
-            <div class="test">
-                <input type="submit" id="botao" value="Enviar">
-                <a href="produtos.php" class="sombra">Ver todos os produtos</a>
-            </div>
+            <input type="submit" id="botao">
+
+            <a href="produtos.php" class="sombra">Ver todos os produtos</a>
 
         </form>
-        </div>
 
     </section>
 
-    <?php
-    //checa se o usuario clicou no botao (preencheu ao menos o nome)
-    if (isset($_POST['nome']) && !empty($_POST['nome'])) {
+</body>
+</html>
 
-        //coloca o dado preenchido em uma variavel e checa se nao tem injection
-        $nome = addslashes($_POST['nome']);
-        $descricao = addslashes($_POST['desc']);
-        $valor = addslashes($_POST['valor']);
+<?php
 
-        //cria um array vazio para guardar os nomes das fotos caso tenha enviado
-        $fotos = array();
+if(isset($_POST['nome'])){
 
-        //checa se o usuario selecionou alguma imagem
-        if (isset($_FILES['foto'])) {
-            $tipo = '';
+    $nome = addslashes($_POST['nome']);
+    $valor = addslashes($_POST['valor']);
+    $descricao = addslashes($_POST['desc']);
+    $nome_arquivo = '';
 
-            //cria um laco e repete enquanto houver fotos
-            for ($i = 0; $i < count($_FILES['foto']['name']); $i++) {
+    //cria o vetor para guardar o nome das fotos se o usuario enviar
+    $fotos = array();
 
-                //checa a extensao para poder enviar apenas PNG e JPG
-                if ($_FILES['foto']['type'][$i] == "image/png") {
-                    $tipo = ".png";
-                } elseif ($_FILES['foto']['type'][$i] == 'image/jpeg') {
-                    $tipo = ".jpg";
-                } else {
-                    $tipo = "outro";
-                }
+    //checa se foi enviada alguma foto
+    if(isset($_FILES['foto'])){
 
-                if ($tipo == 'outro') {
-                    ?>
-                    <script>
-                        alert("Só é possível enviar arquivos JPG e PNG");
-                    </script>
-                    <?php
-                } else {
-                    //gera um nome unico (evita sobrepor arquivo com mesmo nome)
-                    $nome_arquivo = md5($_FILES['foto']['name'][$i]) . rand(1, 999) . $tipo;
+        $tipo = '';
 
-                    //move o arquivo da pasta temporaria para a pasta imagens, ja com o nome novo
-                    move_uploaded_file($_FILES['foto']['tmp_name'][$i], 'imagens/' . $nome_arquivo);
+        for($i = 0; $i < count($_FILES['foto']['name']); $i++){
 
-                    //armazena o nome do arquivo no vetor fotos
-                    array_push($fotos, $nome_arquivo);
-                }
+            if($_FILES['foto']['type'][$i] == 'image/jpeg'){
+                $tipo = ".jpg";
+
+            }else if($_FILES['foto']['type'][$i] == 'image/png'){
+                $tipo = ".png";
+
+            }else{
+                $tipo = "outro";
             }
-        }
 
-        //verifica se todos os campos obrigatorios foram preenchidos
-        if (!empty($nome) && !empty($descricao) && !empty($valor)) {
-            require 'classes/Produto.class.php';
-            $p = new Produto();
-            $isOk = $p->enviarProduto($nome, $descricao, $valor, $fotos);
+            //se o arquivo nao for JPG ou PNG, dispara a mensagem
+            if($tipo == "outro"){
 
-            if ($isOk) {
-                echo "<script>alert('Produto cadastrado com sucesso!');</script>";
-            } else {
-                echo "<script>alert('Erro ao cadastrar o produto.');</script>";
+                echo "<script>alert('Só é possível enviar arquivos JPG e PNG')</script>";
+
+            }else{
+
+                $nome_arquivo = md5(
+                    $_FILES['foto']['name'][$i] . rand(1,999)
+                ) . $tipo;
+
+                move_uploaded_file(
+                    $_FILES['foto']['tmp_name'][$i],
+                    "imagens/" . $nome_arquivo
+                );
+
+                array_push($fotos, $nome_arquivo);
             }
-        } else {
-            ?>
-            <script>
-                alert("Preencha os campos obrigatorios!")
-            </script>
-            <?php
         }
     }
-    ?>
-</body>
 
-</html>
+    //Verifica se todos os campos foram preenchidos no formulario
+    if(!empty($nome) && !empty($valor) && !empty($descricao)){
+
+        require 'classe\Produto.class.php';
+
+        $produto = new Produto();
+
+        $retorno = $produto->conecta();
+
+        if($retorno){
+
+            $produto->enviarProduto(
+                $nome,
+                $descricao,
+                $valor,
+                $fotos
+            );
+
+            echo "<script>alert('Produto enviado com sucesso!')</script>";
+
+        }else{
+
+            echo "<script>alert('Banco indisponivel. Tente mais tarde!')</script>";
+
+            exit;
+        }
+    }
+}
+
+?>

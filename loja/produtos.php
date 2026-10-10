@@ -1,46 +1,69 @@
-<?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
-require 'classes/Produto.class.php';
-$p = new Produto();
-$produtos = $p->listarProdutos();
-?>
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
+
 <head>
-    <title>Produtos Cadastrados</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/produto.css">
+
+    <title>Produtos</title>
 </head>
+
 <body>
-    <section class="secao-produtos">
-        <a href="index.php" class="sombra">Cadastrar novo produto</a>
-        <h1>Produtos Cadastrados</h1>
 
-        <?php if(empty($produtos)): ?>
-            <p class="aviso-vazio">Nenhum produto cadastrado ainda.</p>
-        <?php else: ?>
-            <div class="lista-produtos">
-                <?php foreach($produtos as $produto): ?>
-                    <div class="produto-card sombra">
+    <section>
 
-                        <?php if(!empty($produto['imagens'])): ?>
-                            <div class="produto-fotos">
-                                <?php foreach($produto['imagens'] as $img): ?>
-                                    <img src="imagens/<?php echo htmlspecialchars($img); ?>" alt="<?php echo htmlspecialchars($produto['nome_produto']); ?>">
-                                <?php endforeach; ?>
-                            </div>
-                        <?php else: ?>
-                            <div class="produto-sem-foto">Sem foto</div>
-                        <?php endif; ?>
+        <?php
 
-                        <h2><?php echo htmlspecialchars($produto['nome_produto']); ?></h2>
-                        <p class="produto-desc"><?php echo nl2br(htmlspecialchars($produto['descricao'])); ?></p>
-                        <p class="produto-preco">R$ <?php echo number_format($produto['valor'], 2, ',', '.'); ?></p>
+        require 'classe/Produto.class.php';
+
+        $p = new Produto();
+
+        $p->conecta();
+
+        if(!$p->conecta()){
+
+            echo "<script>alert('Erro ao conectar com o banco de dados!');</script>";
+
+            exit;
+        }
+
+        $dadosProduto = $p->buscarProdutos();
+
+        if(empty($dadosProduto)){
+
+            echo "<script>alert('Nao ha produtos cadastrados!');</script>";
+
+        }else{
+
+            foreach($dadosProduto as $produto){
+
+        ?>
+
+                <a href="exibir_produto.php?id=<?php echo $produto['id_produto']; ?>">
+
+                    <div>
+
+                        <img src="imagens/<?php echo $produto['foto_capa']; ?>">
+
+                        <h2>
+                            <?php echo $produto['nome_produto']; ?>
+                        </h2>
+
                     </div>
-                <?php endforeach; ?>
-            </div>
-        <?php endif; ?>
+
+                </a>
+
+        <?php
+
+            }
+        }
+
+        ?>
+
     </section>
+
 </body>
+
 </html>
